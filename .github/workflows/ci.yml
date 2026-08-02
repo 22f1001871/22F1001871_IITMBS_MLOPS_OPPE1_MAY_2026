@@ -51,7 +51,8 @@ jobs:
       # Run evaluation script
       - name: Run Evaluation
         run: |
-          python scripts/evaluate.py --model ./best_model --data data/test_v0.csv --report report.md
+          python scripts/evaluate.py --model ./best_model --data data/v0/test_v0.csv --report report.md
+
 
       # Post CML report to PR
       - name: Comment PR with CML
