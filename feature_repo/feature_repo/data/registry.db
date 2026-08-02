@@ -1,0 +1,37 @@
+
+F
+&
+
+stock_name"
+stock_nameJfeature_repo
+™õ¼ÓĞ˜ÅÜ™õ¼ÓĞ˜ÅÜ
+C
+#
+__dummy"
+__dummy_idJfeature_repo
+™õ¼Óà°×Ü™õ¼Óà°×Ü1"$eb475233-a541-4158-9bc0-59cdf2a2e531*Åö¼Óè¦¼.2ñ
+Ñ
+stock_featuresfeature_repo
+stock_name"
+rolling_avg_10"
+volume_sum_102€ç„:\	timestampZdata/train_v1.parquet¢data/train_v1.parquet’Äö¼Óè™ÚÔ"Åö¼Óà²®-@b
+
+stock_name’latest
+™õ¼ÓøûåÜÅö¼Ó¨¯.R¶
+³
+,feast.infra.online_stores.sqlite.SqliteTable"‚
+c/home/jupyter/22F1001871_IITMBS_MLOPS_OPPE1_MAY_2026/feature_repo/feature_repo/data/online_store.dbfeature_repo_stock_featuresbŸ	timestampZdata/train_v1.parquetŠ1feast.infra.offline_stores.file_source.FileSource¢data/train_v1.parquetªfeature_repo’Äö¼Óè™ÚÔ"Åö¼Óà²®-Š.
+
+feature_repo
+™õ¼ÓÈõĞ ™õ¼ÓÈõĞ ’Œ
+‰
+stock_featuresfeature_repo"feature_view*¨
+‡
+stock_featuresfeature_repo
+stock_name"
+rolling_avg_10"
+volume_sum_102€ç„:‘	timestampZdata/train_v0.parquetŠ1feast.infra.offline_stores.file_source.FileSource¢data/train_v0.parquet’™õ¼ÓØ«ß"™õ¼Ó˜À°Ü@b
+
+stock_name’latest
+™õ¼ÓøûåÜ™õ¼ÓøûåÜ2
+šõ¼ÓØ7B$d5a0a207-5010-4f97-9411-bd23916f4d38

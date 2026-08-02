@@ -1,0 +1,64 @@
+name: CI with CML Report
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  ci-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout repo
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Setup Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install dvc dvc-gs mlflow scikit-learn matplotlib
+          npm install -g @dvcorg/cml
+
+      # Authenticate to Google Cloud (if needed for DVC remote)
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+      # Pull versioned test data from DVC
+      - name: Pull DVC Data
+        run: dvc pull
+
+      - name: Set MLflow Tracking URI
+        run: |
+          export MLFLOW_TRACKING_URI="http://34.132.103.154:5000"
+
+
+      # Fetch best model from MLflow Registry
+      - name: Fetch Best Model
+        run: |
+          mlflow models download -m "models:/stock_logistic_model/Production" -d ./best_model
+
+      # Run evaluation script
+      - name: Run Evaluation
+        run: |
+          python scripts/evaluate.py --model ./best_model --data data/test_v0.csv --report report.md
+
+      # Post CML report to PR
+      - name: Comment PR with CML
+        if: github.event_name == 'pull_request'
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cml comment create report.md
+
