@@ -9,6 +9,8 @@ on:
 jobs:
   ci-pipeline:
     runs-on: ubuntu-latest
+    env:
+      MLFLOW_TRACKING_URI: http://34.132.103.154:5000   # MLflow server URL
 
     steps:
       # Checkout repo
@@ -39,15 +41,12 @@ jobs:
       - name: Pull DVC Data
         run: dvc pull
 
-      - name: Set MLflow Tracking URI
-        run: |
-          export MLFLOW_TRACKING_URI="http://34.132.103.154:5000"
-
-
       # Fetch best model from MLflow Registry
       - name: Fetch Best Model
         run: |
-          mlflow models download -m "models:/stock_logistic_model/Production" -d ./best_model
+          mlflow artifacts download \
+            --artifact-uri "models:/stock_logistic_model/Production" \
+            --dst-path ./best_model
 
       # Run evaluation script
       - name: Run Evaluation
